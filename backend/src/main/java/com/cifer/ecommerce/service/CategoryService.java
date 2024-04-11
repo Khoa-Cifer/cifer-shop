@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -35,7 +36,7 @@ public class CategoryService implements ICategoryService {
         if (oldCategory.isPresent()) {
             Category newCategory = oldCategory.get();
 
-            if (name != null) {
+            if (!Objects.equals(name, "")) {
                 newCategory.setName(name);
             }
 

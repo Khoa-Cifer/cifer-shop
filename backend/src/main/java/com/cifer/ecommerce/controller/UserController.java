@@ -1,12 +1,9 @@
 package com.cifer.ecommerce.controller;
 
-import com.cifer.ecommerce.model.ImageData;
 import com.cifer.ecommerce.model.User;
-import com.cifer.ecommerce.service.IImageService;
 import com.cifer.ecommerce.service.IUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -19,7 +16,7 @@ import java.io.IOException;
 @RequestMapping("/users")
 public class UserController {
     @Autowired
-    public IUserService userService;
+    public final IUserService userService;
 
     @PostMapping("/register/new-user")
     public ResponseEntity<User> userRegistration(

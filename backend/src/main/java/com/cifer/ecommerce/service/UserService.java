@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -55,19 +56,19 @@ public class UserService implements IUserService{
             User user = updatedUser.get(); // Retrieve the existing user
 
             // Update the user's attributes if the corresponding parameter is not null
-            if (firstName != null) {
+            if (!Objects.equals(firstName, "")) {
                 user.setFirstName(firstName);
             }
-            if (lastName != null) {
+            if (!Objects.equals(lastName, "")) {
                 user.setLastName(lastName);
             }
-            if (password != null) {
+            if (!Objects.equals(password, "")) {
                 user.setPassword(password);
             }
-            if (address != null) {
+            if (!Objects.equals(address, "")) {
                 user.setAddress(address);
             }
-            if (phoneNumber != null) {
+            if (!Objects.equals(phoneNumber, "")) {
                 user.setPhoneNumber(phoneNumber);
             }
 
