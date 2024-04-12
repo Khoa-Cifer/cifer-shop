@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import net.minidev.json.annotate.JsonIgnore;
 
 import java.math.BigDecimal;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -49,5 +50,5 @@ public class Product {
             joinColumns = @JoinColumn(name = "product_id"),
             inverseJoinColumns = @JoinColumn(name = "order_id")
     )
-    private Set<Order> orderSet;
+    private Set<Order> orderSet = new HashSet<>();
 }

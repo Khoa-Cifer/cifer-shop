@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -31,5 +32,5 @@ public class Order {
     @JoinColumn(name = "payment_id")
     private Payment payment;
     @ManyToMany(mappedBy = "orderSet")
-    private Set<Product> productSet;
+    private Set<Product> productSet = new HashSet<>();
 }

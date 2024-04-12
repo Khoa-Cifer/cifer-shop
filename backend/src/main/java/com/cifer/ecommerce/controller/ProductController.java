@@ -10,6 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
@@ -19,10 +20,9 @@ public class ProductController {
     @Autowired
     private final IProductService productService;
 
-
-    @PostMapping("/register/new-user")
+    @PostMapping("/create/new-product/{name}")
     public ResponseEntity<Product> productCreation(
-            @RequestParam("name") String name,
+            @PathVariable("name") String name,
             @RequestParam("desc") String description,
             @RequestParam("price") BigDecimal price,
             @RequestParam("stock") BigDecimal stock,
@@ -31,7 +31,7 @@ public class ProductController {
         return ResponseEntity.ok(product);
     }
 
-    @PutMapping("/update/user-information/{name}")
+    @PutMapping("/update/product-data/{name}")
     public ResponseEntity<String> updateProductInformation(
             @PathVariable(value = "name") String name,
             @RequestParam(value = "desc", required = false) String description,
@@ -42,7 +42,7 @@ public class ProductController {
         return ResponseEntity.ok(updatedProductInformation);
     }
 
-    @PutMapping("/update/user-avatar/{name}")
+    @PutMapping("/update/product-image/{name}")
     public ResponseEntity<String> updateProductAvatar(
             @PathVariable("name") String name,
             @RequestParam("fileName") String fileName,
@@ -51,9 +51,15 @@ public class ProductController {
         return ResponseEntity.ok(updateProductAvatar);
     }
 
-    @DeleteMapping("/delete/user-data/{name}")
+    @DeleteMapping("/delete/product-data/{name}")
     public ResponseEntity<String> deleteProductData(@PathVariable String name) {
         String deletedProduct = productService.deleteProduct(name);
         return ResponseEntity.ok(deletedProduct);
+    }
+
+    @GetMapping("/get-all")
+    public ResponseEntity<List<Product>> getAllProducts() {
+        List<Product> products = productService.getAllExistingProduct();
+        return ResponseEntity.ok(products);
     }
 }

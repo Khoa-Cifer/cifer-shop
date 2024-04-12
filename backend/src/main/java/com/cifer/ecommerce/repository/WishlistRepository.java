@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 public interface WishlistRepository extends JpaRepository<Wishlist, Long> {
-    @Query("SELECT w.id FROM Wishlist w WHERE w.user.email = :userEmail && w.product.name = :productName")
+    @Query("SELECT w.id FROM Wishlist w WHERE w.user.email = :userEmail AND w.product.name = :productName")
     Long findIdByEmailAndProductName(String userEmail, String productName);
 }

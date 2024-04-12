@@ -66,15 +66,14 @@ const deleteUser = async (email) => {
 
 
 //Interact with products:
-const addProduct = async (name, desc, price, stock, image) => {
+const createProduct = async (name, desc, price, stock, image) => {
     const formData = new FormData();
-    formData.append("name", name);
     formData.append("desc", desc);
     formData.append("price", price);
     formData.append("stock", stock);
     formData.append("image", image);
 
-    const response = await axios.post(`/products/register/new-user/${name}`, formData, {
+    const response = await axios.post(`/products/create/new-product/${name}`, formData, {
         headers: {
             'Content-Type': 'multipart/form-data', // Make sure to set proper headers
         },
@@ -88,7 +87,7 @@ const updateProductInfo = async (name, desc, price, stock) => {
     formData.append("price", price);
     formData.append("stock", stock);
 
-    const response = await axios.put(`/products/update/user-information/${name}`, formData)
+    const response = await axios.put(`/products/update/product-data/${name}`, formData)
     return response
 }
 
@@ -97,7 +96,7 @@ const updateProductAvatar = async (name, fileName, image) => {
     formData.append("fileName", fileName)
     formData.append("image", image)
 
-    const response = await axios.put(`/products/update/user-avatar/${name}`, formData, {
+    const response = await axios.put(`/products/update/product-image/${name}`, formData, {
         headers: {
             'Content-Type': 'multipart/form-data', // Make sure to set proper headers
         },
@@ -105,39 +104,17 @@ const updateProductAvatar = async (name, fileName, image) => {
     return response
 }
 
-
 const deleteProduct = async (name) => {
     const response = axios.delete(`/products/delete/user-data/${name}`)
     return response
 }
 
+const getAllProducts = async () => {
+    const response = axios.get(`/products/get-all`)
+    return response
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-export default {addUser, updateUserInfo, updateUserAvatar, deleteUser,
-    addProduct, updateProductInfo, updateProductAvatar, deleteProduct
+export {
+    addUser, updateUserInfo, updateUserAvatar, deleteUser,
+    createProduct, updateProductInfo, updateProductAvatar, deleteProduct, getAllProducts
 }

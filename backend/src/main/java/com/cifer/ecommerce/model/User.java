@@ -35,14 +35,14 @@ public class User {
     @JoinColumn(name = "image_id")
     private ImageData data;
     @OneToMany(mappedBy = "user")
-    private Set<Wishlist> wishlistSet;
+    private Set<Wishlist> wishlistSet = new HashSet<>();
     @OneToMany(mappedBy = "user")
-    private Set<Cart> cartSet;
+    private Set<Cart> cartSet = new HashSet<>();
     @OneToMany(mappedBy = "user")
-    private Set<Payment> paymentSet;
+    private Set<Payment> paymentSet = new HashSet<>();
     @OneToMany(mappedBy = "user")
-    private Set<Order> orderSet;
+    private Set<Order> orderSet = new HashSet<>();
     @OneToMany(mappedBy = "user")
-    private Set<Shipment> shipmentSet;
+    private Set<Shipment> shipmentSet = new HashSet<>();
 
 }

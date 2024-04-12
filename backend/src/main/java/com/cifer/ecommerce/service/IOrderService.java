@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface IOrderService {
     Order getOrderInformationBasedOnOrderedProducts(List<Product> productList);
-    void deleteOrderedProduct(Long id, String name);
+    Order deleteOrderedProduct(String userEmail, Long orderId, String productName);
     Order updateOrderedProductQuantity(int quantity);
+    Order setProductToOrderList(String userEmail, Long orderId, String productName);
 }

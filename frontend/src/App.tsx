@@ -1,10 +1,14 @@
 import './App.css'
+import AddProduct from './product/AddProduct'
+import ProductList from './product/ProductList'
+import AddUser from './user/AddUser'
 
 export default function App() {
   return (
-    <h1 className="underline">
-      Hello world!
-    </h1>
-
+    <div>
+      <AddProduct />
+      <AddUser />
+      <ProductList />
+    </div>
   )
 }
