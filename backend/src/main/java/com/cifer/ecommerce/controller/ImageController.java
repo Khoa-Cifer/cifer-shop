@@ -19,7 +19,6 @@ import java.io.IOException;
 @RequestMapping("/images")
 @CrossOrigin("*")
 public class ImageController {
-    @Autowired
     private IImageService service;
 
     @PostMapping("/fileSystem")

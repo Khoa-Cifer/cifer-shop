@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -20,37 +21,36 @@ public class CategoryService implements ICategoryService {
     @Override
     public Category createCategory(String name) {
         Category category = new Category();
-        Optional<List<String>> allExistedName = repository.getAllName();
-        for (int i = 0; i < allExistedName.get().size(); i++) {
-            if (name.equalsIgnoreCase(allExistedName.get().get(i))) {
-                return null;
-            }
+        boolean categoryExistenceCheck = categoriesNameDuplicatedCheck(name);
+        if (categoryExistenceCheck) {
+            category.setName(name);
+            return repository.save(category);
         }
-        category.setName(name);
-        return repository.save(category);
+        return null;
     }
 
     @Override
-    public String updateCategory(Long id, String name) {
-        Optional<Category> oldCategory = repository.findById(id);
+    public String updateCategory(String oldName, String newName) {
+        Optional<Category> oldCategory = repository.findByName(oldName);
         if (oldCategory.isPresent()) {
             Category newCategory = oldCategory.get();
-
-            if (!Objects.equals(name, "")) {
-                newCategory.setName(name);
+            boolean categoryExistenceCheck = categoriesNameDuplicatedCheck(newName);
+            if (categoryExistenceCheck) {
+                if (!Objects.equals(newName, "")) {
+                    newCategory.setName(newName);
+                    repository.save(newCategory);
+                    return "Update successfully";
+                }
             }
-
-            repository.save(newCategory);
-            return "Update successfully";
         }
         return "Update unsuccessfully, maybe wrong id";
     }
 
     @Override
-    public String deleteCategory(Long id) {
-        Optional<Category> deletedCategory = repository.findById(id);
+    public String deleteCategory(String name) {
+        Optional<Category> deletedCategory = repository.findByName(name);
         if (deletedCategory.isPresent()) {
-            repository.deleteById(id);
+            repository.deleteById(deletedCategory.get().getId());
             return "Delete successfully";
         }
         return "Nothing happened, maybe category does not exist";
@@ -59,5 +59,18 @@ public class CategoryService implements ICategoryService {
     @Override
     public List<Category> getAllCategories() {
         return repository.findAll();
+    }
+
+    public Optional<List<String>> getAllCategoriesName() {
+        return repository.getAllName();
+    }
+
+    public boolean categoriesNameDuplicatedCheck(String name) {
+        for (int i = 0; i < getAllCategoriesName().get().size(); i++) {
+            if (name.equalsIgnoreCase(getAllCategoriesName().get().get(i))) {
+                return false;
+            }
+        }
+        return true;
     }
 }

@@ -17,7 +17,6 @@ import java.util.List;
 @RequestMapping("/products")
 @CrossOrigin("*")
 public class ProductController {
-    @Autowired
     private final IProductService productService;
 
     @PostMapping("/create/new-product/{name}")

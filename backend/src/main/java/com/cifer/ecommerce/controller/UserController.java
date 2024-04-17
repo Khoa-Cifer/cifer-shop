@@ -15,7 +15,6 @@ import java.io.IOException;
 @RestController
 @RequestMapping("/users")
 public class UserController {
-    @Autowired
     public final IUserService userService;
 
     @PostMapping("/register/new-user")

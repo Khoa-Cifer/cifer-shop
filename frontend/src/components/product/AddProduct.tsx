@@ -1,7 +1,6 @@
 import { useState } from "react"
 import { createProduct } from "../utils/WebService"
 import { Button, Form } from "react-bootstrap"
-import defaultProductImage from "../assets/default-product-img.png";
 
 const AddProduct = () => {
     const [newProduct, setNewProduct] = useState({
@@ -9,7 +8,7 @@ const AddProduct = () => {
         desc: "",
         price: "",
         stock: "",
-        image: defaultProductImage
+        image: null
     })
 
     const [successMessage, setSuccessMessage] = useState("")
@@ -73,7 +72,7 @@ const AddProduct = () => {
                     desc: "",
                     price: "",
                     stock: "",
-                    image: defaultProductImage
+                    image: null
                 })
             } else {
                 setErrorMessage("Error adding new product")

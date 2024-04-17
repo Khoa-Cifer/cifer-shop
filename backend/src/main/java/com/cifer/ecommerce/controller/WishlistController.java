@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/wishlists")
 public class WishlistController {
-    @Autowired
     private final IWishlistService wishlistService;
 
     @PostMapping("/set-wishlist/new-wishlist")

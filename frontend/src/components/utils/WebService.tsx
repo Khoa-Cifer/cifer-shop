@@ -105,16 +105,22 @@ const updateProductAvatar = async (name, fileName, image) => {
 }
 
 const deleteProduct = async (name) => {
-    const response = axios.delete(`/products/delete/user-data/${name}`)
+    const response = await axios.delete(`/products/delete/user-data/${name}`)
     return response
 }
 
 const getAllProducts = async () => {
-    const response = axios.get(`/products/get-all`)
+    const response = await axios.get(`/products/get-all`)
+    return response
+}
+
+const getAllCategories = async () => {
+    const response = await axios.get(`/categories/get-all`)
     return response
 }
 
 export {
     addUser, updateUserInfo, updateUserAvatar, deleteUser,
-    createProduct, updateProductInfo, updateProductAvatar, deleteProduct, getAllProducts
+    createProduct, updateProductInfo, updateProductAvatar, deleteProduct, getAllProducts,
+    getAllCategories
 }
