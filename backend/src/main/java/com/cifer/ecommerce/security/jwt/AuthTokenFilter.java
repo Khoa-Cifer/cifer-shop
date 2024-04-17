@@ -1,6 +1,6 @@
 package com.cifer.ecommerce.security.jwt;
 
-import com.cifer.ecommerce.security.user.HotelUserDetailsService;
+import com.cifer.ecommerce.security.user.AppUserDetailsService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -21,7 +21,7 @@ public class AuthTokenFilter extends OncePerRequestFilter {
     @Autowired
     private JwtUtils jwtUtils;
     @Autowired
-    private HotelUserDetailsService userDetailsService;
+    private AppUserDetailsService userDetailsService;
     private static final Logger logger = LoggerFactory.getLogger(AuthTokenFilter.class);
 
     @Override

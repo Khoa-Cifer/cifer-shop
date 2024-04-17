@@ -19,19 +19,6 @@ import java.util.List;
 public class UserController {
     public final IUserService userService;
 
-    @PostMapping("/register/new-user")
-    public ResponseEntity<User> userRegistration(
-            @RequestParam("firstName") String firstName,
-            @RequestParam("lastName") String lastName,
-            @RequestParam("email") String email,
-            @RequestParam("password") String password,
-            @RequestParam("address") String address,
-            @RequestParam("phoneNumber") String phoneNumber,
-            @RequestParam("image") MultipartFile file) throws IOException {
-        User newUser = userService.registerUser(firstName, lastName, email, password, address, phoneNumber, file);
-        return ResponseEntity.ok(newUser);
-    }
-
     @PutMapping("/update/user-information/{email}")
     public ResponseEntity<String> updateUserInformation(
             @RequestParam(value = "firstName", required = false) String firstName,
@@ -58,7 +45,6 @@ public class UserController {
         String deletedUser = userService.deleteUser(email);
         return ResponseEntity.ok(deletedUser);
     }
-
     @GetMapping("/get-all")
     public ResponseEntity<List<User>> getAllUsers() {
         List<User> allUsers = userService.getAllUsers();

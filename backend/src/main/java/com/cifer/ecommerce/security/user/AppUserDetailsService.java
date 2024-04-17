@@ -11,13 +11,13 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class HotelUserDetailsService implements UserDetailsService {
+public class AppUserDetailsService implements UserDetailsService {
     private final UserRepository userRepository;
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
-        return com.cifer.ecommerce.security.user.HotelUserDetails.buildUserDetails(user);
+        return AppUserDetails.buildUserDetails(user);
     }
 }

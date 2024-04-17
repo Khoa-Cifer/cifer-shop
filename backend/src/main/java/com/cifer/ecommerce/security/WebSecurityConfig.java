@@ -2,7 +2,7 @@ package com.cifer.ecommerce.security;
 
 import com.cifer.ecommerce.security.jwt.AuthTokenFilter;
 import com.cifer.ecommerce.security.jwt.JwtAuthEntryPoint;
-import com.cifer.ecommerce.security.user.HotelUserDetailsService;
+import com.cifer.ecommerce.security.user.AppUserDetailsService;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -29,7 +29,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableMethodSecurity(securedEnabled = true, jsr250Enabled = true, prePostEnabled = true)
 @EnableWebSecurity
 public class WebSecurityConfig {
-    private final HotelUserDetailsService userDetailsService;
+    private final AppUserDetailsService userDetailsService;
     private final JwtAuthEntryPoint jwtAuthEntryPoint;
 
     @Bean
@@ -62,7 +62,7 @@ public class WebSecurityConfig {
                         exception -> exception.authenticationEntryPoint(jwtAuthEntryPoint))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/auth/**", "/rooms/**", "/bookings/**")
+                        .requestMatchers("/auth/**", "/categories/**", "/products/**", "/users/**", "/wishlists")
                         .permitAll().requestMatchers("/roles/**").hasRole("ADMIN")
                         .anyRequest().authenticated());
         http.authenticationProvider(authenticationProvider());

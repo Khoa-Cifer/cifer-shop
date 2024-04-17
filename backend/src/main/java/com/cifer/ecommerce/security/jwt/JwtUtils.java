@@ -1,6 +1,6 @@
 package com.cifer.ecommerce.security.jwt;
 
-import com.cifer.ecommerce.security.user.HotelUserDetails;
+import com.cifer.ecommerce.security.user.AppUserDetails;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
@@ -26,7 +26,7 @@ public class JwtUtils {
     private int jwtExpirationMs;
 
     public String generateJwtTokenForUser(Authentication authentication) {
-        HotelUserDetails userPrincipal = (HotelUserDetails) authentication.getPrincipal();
+        AppUserDetails userPrincipal = (AppUserDetails) authentication.getPrincipal();
         List<String> roles = userPrincipal.getAuthorities()
                 .stream()
                 .map(GrantedAuthority::getAuthority).toList();

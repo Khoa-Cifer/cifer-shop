@@ -1,35 +1,6 @@
 import axios from "./CustomizeApiFunction";
 
 //Interact with users
-const addUser = async (firstName, lastName, email, password, address, phoneNumber, image) => {
-    try {
-        const formData = new FormData();
-        formData.append('firstName', firstName);
-        formData.append('lastName', lastName);
-        formData.append('email', email);
-        formData.append('password', password);
-        formData.append('address', address);
-        formData.append('phoneNumber', phoneNumber);
-        formData.append('image', image); // append the file to the form data
-
-        // Make the POST request using Axios
-        const response = await axios.post('/users/register/new-user', formData, {
-            headers: {
-                'Content-Type': 'multipart/form-data', // Make sure to set proper headers
-            },
-        });
-
-        // Handle the response
-        console.log('Response:', response.data);
-        return response;
-        // You can do further processing here, like updating state or showing a success message
-    } catch (error) {
-        // Handle errors
-        console.error('Error:', error);
-        // You can handle errors here, like showing an error message to the user
-    }
-}
-
 const updateUserInfo = async (firstName, lastName, email, password, address, phoneNumber) => {
     const formData = new FormData();
     formData.append('firstName', firstName);
@@ -119,8 +90,43 @@ const getAllCategories = async () => {
     return response
 }
 
+const registerUser = async (firstName, lastName, email, password, address, phoneNumber, image) => {
+    try {
+        const formData = new FormData();
+        formData.append('firstName', firstName);
+        formData.append('lastName', lastName);
+        formData.append('email', email);
+        formData.append('password', password);
+        formData.append('address', address);
+        formData.append('phoneNumber', phoneNumber);
+        formData.append('image', image); // append the file to the form data
+
+        // Make the POST request using Axios
+        const response = await axios.post('/auth/login', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data', // Make sure to set proper headers
+            },
+        });
+
+        // Handle the response
+        console.log('Response:', response.data);
+        return response;
+        // You can do further processing here, like updating state or showing a success message
+    } catch (error) {
+        // Handle errors
+        console.error('Error:', error);
+        // You can handle errors here, like showing an error message to the user
+    }
+}
+
+const loginUser = async (login) => {
+    const response = await axios.post("/auth/login", login)
+    return response;
+}
+
 export {
-    addUser, updateUserInfo, updateUserAvatar, deleteUser,
+    updateUserInfo, updateUserAvatar, deleteUser,
     createProduct, updateProductInfo, updateProductAvatar, deleteProduct, getAllProducts,
-    getAllCategories
+    getAllCategories,
+    registerUser, loginUser
 }
