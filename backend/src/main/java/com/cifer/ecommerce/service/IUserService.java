@@ -22,4 +22,5 @@ public interface IUserService {
     //If current login user is an administrator, he/she can get a list of all users
     String deleteUser(String email);
     User getUser(String email);
+    List<User> getAllUsers();
 }

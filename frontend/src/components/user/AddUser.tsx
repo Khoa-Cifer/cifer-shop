@@ -1,7 +1,6 @@
 import { useState } from "react"
 import { addUser } from "../utils/WebService"
 import { Button, Form } from "react-bootstrap"
-import defaultProductImage from "../assets/default-product-img.png";
 
 const AddUser = () => {
     const [newProduct, setNewProduct] = useState({
@@ -11,7 +10,7 @@ const AddUser = () => {
         password: "",
         address: "",
         phoneNumber: "",
-        image: defaultProductImage
+        image: null
     })
 
     const [successMessage, setSuccessMessage] = useState("")
@@ -79,7 +78,7 @@ const AddUser = () => {
                     password: "",
                     address: "",
                     phoneNumber: "",
-                    image: defaultProductImage
+                    image: null
                 })
             } else {
                 setErrorMessage("Error adding new product")
@@ -94,7 +93,7 @@ const AddUser = () => {
     }
 
     return (
-        <div className="container my-5">
+        <section className="container my-5">
             <div className="form-container">
                 <h1>User registration</h1>
 
@@ -208,7 +207,7 @@ const AddUser = () => {
 
                 {errorMessage && <div className="alert alert-danger fade show"> {errorMessage}</div>}
             </div>
-        </div>
+        </section>
 
     )
 }

@@ -32,7 +32,7 @@ public class ImageController {
     @GetMapping("/fileSystem/{id}")
     public ResponseEntity<byte[]> downloadImageFromFileSystem(
             @PathVariable Long imageId, @RequestParam("userId") Long userId) throws IOException {
-        byte[] imageData=service.getImageFromFileSystem(imageId, userId);
+        byte[] imageData = service.getImageFromFileSystem(imageId, userId);
         return ResponseEntity.status(HttpStatus.OK)
                 .contentType(MediaType.valueOf("image/png"))
                 .body(imageData);

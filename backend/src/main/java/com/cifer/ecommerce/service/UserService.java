@@ -105,4 +105,9 @@ public class UserService implements IUserService{
         }
         return null;
     }
+
+    @Override
+    public List<User> getAllUsers() {
+        return repository.findAll();
+    }
 }

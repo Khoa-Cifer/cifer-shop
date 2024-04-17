@@ -5,10 +5,12 @@ import com.cifer.ecommerce.service.IUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.List;
 
 @RequiredArgsConstructor
 @CrossOrigin("*")
@@ -55,5 +57,17 @@ public class UserController {
     public ResponseEntity<String> deleteUserData(@PathVariable String email) {
         String deletedUser = userService.deleteUser(email);
         return ResponseEntity.ok(deletedUser);
+    }
+
+    @GetMapping("/get-all")
+    public ResponseEntity<List<User>> getAllUsers() {
+        List<User> allUsers = userService.getAllUsers();
+        return ResponseEntity.ok(allUsers);
+    }
+    
+    @GetMapping("/get/{email}")
+    public ResponseEntity<User> getUserByEmail(@PathVariable("email") String email) {
+        User user = userService.getUser(email);
+        return ResponseEntity.ok(user);
     }
 }

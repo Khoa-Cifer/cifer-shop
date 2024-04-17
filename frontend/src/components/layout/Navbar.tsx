@@ -2,7 +2,7 @@ import { Link, NavLink } from "react-router-dom"
 
 const Navbar = () => {
     return (
-        <nav className="navbar navbar-expand-lg bg-body-tertiary px-5 shadow mt-5 sticky-top">
+        <nav className="navbar px-5 shadow mt-5">
             <div className="container-fluid">
                 <Link to={"/"} className="navbar-brand">
                     <span className="hotel-color">Cifer Shop</span>
@@ -20,14 +20,14 @@ const Navbar = () => {
                 </button>
 
                 <div>
-                    <ul className="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll">
-                        <li className="nav-item">
+                    <ul className="flex px-5">
+                        <li className="nav-item px-5">
                             <NavLink aria-current="page" to={"/product-list"}>
                                 Browse all products
                             </NavLink>
                         </li>
 
-                        <li className="nav-item">
+                        <li className="nav-item px-5 padd">
                             <NavLink aria-current="page" to={"/category-list"}>
                                 Browse all categories
                             </NavLink>
